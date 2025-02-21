@@ -2,7 +2,9 @@ import "dotenv/config";
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import userRoutes from "./routes/user.routes";
-import registrationRoutes from "./routes/registration.routes";
+import subscribersRoutes from "./routes/subscribers.routes";
+import adminRoutes from "./routes/admin.routes";
+
 import logger from "./utils/logger";
 
 const app = express();
@@ -28,8 +30,9 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
 app.get("/", (req, res) => {
     res.send("Hello, world!");
 });
+app.use("/api", adminRoutes);
 app.use("/api", userRoutes);
-app.use("/api", registrationRoutes);
+app.use("/api", subscribersRoutes);
 
 app.use((req, res) => {
     logger.error(` Route not found: ${req.method} ${req.originalUrl}`);

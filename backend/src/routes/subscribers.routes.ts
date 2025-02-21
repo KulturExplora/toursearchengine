@@ -1,11 +1,11 @@
 import { Request, Response, Router } from "express";
-import { RegistrationService } from "../services/registration.service";
+import { SubscribersService } from "../services/subscribers.service";
 const router = Router();
 
 // POST register
-router.post("/register", async (req: Request, res: Response) => {
+router.post("/subscribers", async (req: Request, res: Response) => {
     const { email } = req.body;
-    const result = await RegistrationService.registerEmailForBeta(email);
+    const result = await SubscribersService.registerEmailForBeta(email);
 
     if (!result.success) {
         res.status(400).json({ error: result.error });

@@ -7,7 +7,7 @@ import {
 } from "../utils/inputValidation";
 import logger from "../utils/logger";
 
-export const RegistrationService = {
+export const SubscribersService = {
     async registerEmailForBeta(
         email: string
     ): Promise<ServiceResponse<{ id: string; email: string }>> {
@@ -30,12 +30,12 @@ export const RegistrationService = {
         }
 
         try {
-            const newEmail = await prisma.betaRegistration.create({
+            const newEmail = await prisma.betaSubscribers.create({
                 data: { email },
             });
 
             await logger.success(
-                `[RegistrationService] Email registered successfully:`,
+                `[Subscribers Service] Email registered successfully:`,
                 email
             );
             return { success: true, data: newEmail };

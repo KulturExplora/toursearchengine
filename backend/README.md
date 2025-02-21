@@ -1,6 +1,6 @@
 # kulturExplora Backend
 
-This is the backend for the kulturExplora project, built with Node.js, Express.js, and TypeScript. It uses Prisma ORM to manage the database.
+This is the backend for the kulturExplora Tour Search Engine project, built with Node.js, Express.js, and TypeScript. It uses Prisma ORM to manage the database.
 
 ## Tech Stack
 
@@ -14,8 +14,8 @@ This is the backend for the kulturExplora project, built with Node.js, Express.j
 1. Clone the repository:
 
     ```sh
-    git clone https://github.com/your-repo/kulturExplora-backend.git
-    cd kulturExplora-backend
+     https://github.com/KulturExplora/toursearchengine.git
+    cd toursearchengine/backend
 
     ```
 
@@ -25,11 +25,36 @@ This is the backend for the kulturExplora project, built with Node.js, Express.j
 npm install
 ```
 
-3. Set up environment variables: Create a .env file in the root directory and add:
+3. Set up environment variables: create a .env file in the `backend/root` directory and add the following environment variables:
 
 ```sh
-DATABASE_URL=your_database_url
+# Environment Variables
+
+PROJECT_URL=
+API_KEY=
+SUPABASE_URL=
+SUPABASE_KEY=
+SUPABASE_USER=
+DB_PASSWORD=
+
+# Connect to Supabase via connection pooling with Supavisor.
+
+DATABASE_URL=
+
+# Direct connection to the database. Used for migrations.
+
+DIRECT_URL=
+
+# App variables
+
+PORT=
 ```
+
+**Important Notes**:
+
+-   The values required for testing and development environments are available on the KulturExplora Confluence page.
+-   Ensure you have the correct access permissions to retrieve these credentials.
+-   Never commit your .env file to version control to keep sensitive data secure.
 
 4. Migrate the database:
 
@@ -53,7 +78,7 @@ npm run dev
 
 (TBD – Add endpoints as they are implemented)
 
-## Project Structure
+## Project Structure (Work in Progress)
 
 ```sh
 📦 my-supabase-app
@@ -89,5 +114,4 @@ npm run dev
 ┣ 📜 package.json         # Dependencies & scripts
 ┣ 📜 tsconfig.json        # TypeScript config
 ┗ 📜 README.md            # Documentation
-
 ```
