@@ -1,37 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
 const Navbar = () => {
-  // State to track if the page is scrolled
   const [isScrolled, setIsScrolled] = useState(false);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   useEffect(() => {
-    // Function to handle scroll event
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      const scrollTop = window.scrollY;
+
+      // 如果滾動距離超過 50px，設置為 scrolled 狀態
+      setIsScrolled(scrollTop > 50);
     };
 
-    // Attach scroll event listener
     window.addEventListener('scroll', handleScroll);
-
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
 
   // 當選單打開時防止背景滾動
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'; // 禁止背景滾動
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'unset'; // 恢復背景滾動
     }
   }, [isMobileMenuOpen]);
 
@@ -41,31 +31,33 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+      <nav
+        className={`navbar ${isScrolled ? 'scrolled' : ''} ${
+          isMobileMenuOpen ? 'menu-open' : ''
+        }`}
+      >
         <div className='container'>
           <h1>
             <a
               href='https://www.linkedin.com/company/kulturexplora/'
               target='_blank'
-
               rel='noopener noreferrer'
             >
-              {/* 大螢幕 Logo */}
+              {/* 大Logo */}
               <img
                 src='/Logos/png/ColorLogoNoBackground.png'
                 className='logo desktop-logo'
-                alt='KulturExp
-            loraLogo'
+                alt='KulturExplora Logo'
               />
               {/* 手機版 Logo */}
               <img
-                src='/Logos/png/ColorLogo.png' // 請確保這個路徑指向你的小logo
+                src='/Logos/png/ColorLogo.png'
                 className='logo mobile-logo'
                 alt='KulturExplora Small Logo'
               />
             </a>
           </h1>
-          {/* Hamburger Menu Button */}
+          {/* 漢堡選單按鈕 */}
           <button
             className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}
             onClick={toggleMobileMenu}
@@ -76,31 +68,29 @@ const Navbar = () => {
             <span></span>
           </button>
 
-          {/* Navigation Links */}
+          {/* 導航連結 */}
           <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
-            <li className={`nav-item ${isScrolled ? 'scrolled-link' : ''}`}>
-              <a href='#' onClick={() => setIsMobileMenuOpen(false)}>
+            <li className='nav-item'>
+              <a href='#about' onClick={() => setIsMobileMenuOpen(false)}>
                 About
               </a>
             </li>
-            <li className={`nav-item ${isScrolled ? 'scrolled-link' : ''}`}>
-              <a href='#' onClick={() => setIsMobileMenuOpen(false)}>
+            <li className='nav-item'>
+              <a href='#features' onClick={() => setIsMobileMenuOpen(false)}>
                 Features
               </a>
             </li>
-            <li className={`nav-item ${isScrolled ? 'scrolled-link' : ''}`}>
-              <a href='#' onClick={() => setIsMobileMenuOpen(false)}>
+            <li className='nav-item'>
+              <a href='#blog' onClick={() => setIsMobileMenuOpen(false)}>
                 Blog
               </a>
             </li>
-            <li className={`nav-item ${isScrolled ? 'scrolled-link' : ''}`}>
-              <a href='#' onClick={() => setIsMobileMenuOpen(false)}>
-                FAQ’s
+            <li className='nav-item'>
+              <a href='#faqs' onClick={() => setIsMobileMenuOpen(false)}>
+                FAQ's
               </a>
-
             </li>
           </ul>
-          {/* <h1>KulturExplora Landing page is coming soon...</h1> */}
         </div>
       </nav>
     </>

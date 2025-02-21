@@ -6,46 +6,70 @@ import { FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer>
-      {' '}
-      <footer className='bg-gray-900 py-8'>
-        <div className='container'>
+    <footer
+      className='py-8'
+      style={{ backgroundColor: 'var(--secondary-color)' }}
+    >
+      <div className='container p-4 d-flex  justify-content-between align-items-center flex-column flex-md-row'>
+        <div className='d-flex align-items-center flex-column flex-md-row'>
           <h1>
             <img
-              src='/Logos/png/ColorLogoWBackground.png'
+              src='/Logos/png/ColorLogoNoBackground.png'
               alt='logo'
-              style={{ width: '100px' }}
+              style={{ width: '250px' }}
             />
             <a href='#'></a>
           </h1>
-          <p>Discover Africa. Book Smart. Travel Better.</p>
-          <span>
-            Try KultureXplora—The easiest way to find Africa's best safari
-            operators.
-          </span>
-          <ul className='socialMedia d-flex justify-content-center'>
-            <li>
-              <FaLinkedin size={48} style={{ color: '#fd7e14' }} />
-            </li>
+          <div className='d-flex flex-column ms-3'>
+            <p className='m-0 fs-4 fw-bold'>
+              Discover Africa. Book Smart. Travel Better.
+            </p>
+            <span className='fs-6 pb-2'>
+              Try KultureXplora - The easiest way to find Africa's best safari
+              operators.
+            </span>
+          </div>
+        </div>
 
-            <li>
-              <FaFacebookSquare size={48} style={{ color: '#fd7e14' }} />
-            </li>
-            <li>
-              <FaInstagram size={48} style={{ color: '#fd7e14' }} />
-            </li>
-            <li>
+        <ul className='socialMedia d-flex justify-content-center'>
+          <li>
+            <a href='https://www.linkedin.com/company/kulturexplora/posts/?feedView=all'>
               {' '}
-              <a href='https://www.tiktok.com/@kulturexplora?_t=ZN-8tvtJxYrf0Q&_r=1'>
-                <IoLogoTiktok size={48} style={{ color: '#fd7e14' }} />
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className='max-w-6xl mx-auto px-4 text-center'>
-          <p>&copy; 2024 KultureXplora. All rights reserved.</p>
-        </div>
-      </footer>
+              <FaLinkedin size={48} style={{ color: 'var(--primary-color)' }} />
+            </a>
+          </li>
+
+          <li>
+            <a href='https://www.facebook.com/profile.php?id=61573159404713'>
+              <FaFacebookSquare
+                size={48}
+                style={{ color: 'var(--primary-color)' }}
+              />{' '}
+            </a>
+          </li>
+          <li>
+            <a href='https://www.instagram.com/kulturexplora?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=='>
+              {' '}
+              <FaInstagram
+                size={48}
+                style={{ color: 'var(--primary-color)' }}
+              />
+            </a>
+          </li>
+          <li>
+            {' '}
+            <a href='https://www.tiktok.com/@kulturexplora?_t=ZN-8tvtJxYrf0Q&_r=1'>
+              <IoLogoTiktok
+                size={48}
+                style={{ color: 'var(--primary-color)' }}
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div className=' p-2 text-center'>
+        <p className='m-0'>&copy; 2025 KultureXplora. All rights reserved.</p>
+      </div>
     </footer>
   );
 };

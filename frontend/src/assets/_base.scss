@@ -9,27 +9,28 @@
 *::after {
   box-sizing: border-box;
 }
-$primary-color: #ffc699; // 定義主要顏色
-$secondary-color: #d97706; // 定義次要顏色
-$btn-primary: #d97706; // 定義按鈕顏色
+
+$secondary: #ffc699; // 定義主要顏色
+$primary: #d97706; // 定義次要顏色
+$btn-primary-bg: $primary; // 定義按鈕顏色
+
 :root {
+  --primary-color: #{$primary};
+  --secondary-color: #{$secondary};
+  --btn-primary: #{$btn-primary-bg};
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  // background-color: $primary-color;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-body {
-  line-height: 1.5;
-  /* font-family: */
-  // background-color: $primary-color;
+  body {
+    line-height: 1.5;
+    /* font-family: */
+    // background-color: $primary;
+  }
 }
 /*需link/import google font*/
 

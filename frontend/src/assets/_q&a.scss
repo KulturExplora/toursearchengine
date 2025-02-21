@@ -1,0 +1,19 @@
+.accordion-button {
+  background-color: #f8f9fa; /* 自定義背景色 */
+  color: #333; /* 自定義文字顏色 */
+  font-weight: bold;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: $secondary;
+  color: #fff; /* 白色文字 */
+}
+/* 調整邊框顏色 */
+.accordion-button:not(.collapsed)::after {
+  border-color: #fff; /* 展開箭頭的顏色 */
+}
+/* 調整按鈕的 hover 狀態 */
+.accordion-button:hover {
+  background-color: $secondary; /* secondary 顏色的 hover 狀態 */
+  color: #fff;
+}

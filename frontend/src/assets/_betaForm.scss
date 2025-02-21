@@ -6,7 +6,7 @@
 }
 
 .title {
-  font-size: 32px;
+  font-size: 48px;
   margin-bottom: 16px;
   color: #333;
 }
@@ -23,10 +23,16 @@
   gap: 12px;
   max-width: 600px;
   margin: 0 auto;
+  .input-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .email-input {
-  flex: 1;
+  width: 100%;
   padding: 12px 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -34,25 +40,63 @@
   outline: none;
   background-color: white;
   color: #000;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  &:focus {
+    border-color: $secondary;
+    box-shadow: 0 0 0 0.2rem rgba($secondary, 0.25);
+  }
+  &.error {
+    border-color: #dc3545;
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+  }
 }
-
-.email-input:focus {
-  border-color: #666;
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  text-align: left;
+  width: 100%;
 }
-
 .submit-button {
   padding: 12px 24px;
-  background-color: $secondary-color;
+  background-color: $btn-primary-bg;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.2s;
-}
+  min-width: 140px;
+  &:hover:not(:disabled) {
+    background-color: darken($secondary, 10%);
+    transform: translateY(-1px);
+  }
 
-.submit-button:hover {
-  background-color: $primary-color;
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  .loading-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s linear infinite;
+    }
+  }
 }
 
 @media (max-width: 600px) {
@@ -62,5 +106,96 @@
 
   .submit-button {
     width: 100%;
+  }
+}
+.betaForm {
+  .error-message {
+    color: $primary;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .message {
+    padding: 1rem;
+    border-radius: 0.375rem;
+    margin-top: 1rem;
+    animation: fadeIn 0.3s ease-in;
+
+    &.success {
+      background-color: #d1e7dd;
+      color: #0f5132;
+      border: 1px solid #badbcc;
+    }
+
+    &.error {
+      background-color: #f8d7da;
+      color: #842029;
+      border: 1px solid #f5c2c7;
+    }
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .title {
+      font-size: 36px;
+    }
+
+    .description {
+      font-size: 16px;
+    }
+
+    .email-form {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .submit-button {
+      width: 100%;
+    }
+  }
+}
+.betaForm {
+  .feature-bullet {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; // 防止圖標縮小
+
+    i {
+      font-size: 1.25rem; // 統一圖標大小
+      color: var(--primary-color);
+    }
+  }
+}
+.feature-list {
+  li {
+    .feature-bullet {
+      background-color: var(--bs-warning-bg-subtle);
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      .feature-bullet {
+        transform: scale(1.1);
+      }
+    }
   }
 }

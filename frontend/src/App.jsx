@@ -8,6 +8,8 @@ import About from './components/About';
 import Form from './components/BetaForm';
 import FAQs from './components/FAQs';
 import BetaForm from './components/BetaForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 function App() {
   const [count, setCount] = useState(0);
 
