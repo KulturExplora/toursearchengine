@@ -1,14 +1,12 @@
 import logger from "./logger";
 
-// ✅ Function to check any number of required fields dynamically
+// kiFunction to check any number of required fields dynamically
 export const checkRequiredFields = (...args: { key: string; value: any }[]) => {
     const missingInputFields = args
         .filter(
             ({ value }) => value === undefined || value === null || value === ""
         )
         .map(({ key }) => key);
-
-    console.log("missingInputFields", missingInputFields);
 
     if (missingInputFields.length > 0) {
         logger.error(
@@ -26,7 +24,6 @@ export const checkRequiredFields = (...args: { key: string; value: any }[]) => {
 
 export const emailFormattingCheck = (email: string) => {
     email = email.trim();
-    console.log("email after trim: ", email);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email) || email.includes(" ")) {
