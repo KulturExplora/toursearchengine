@@ -1,10 +1,9 @@
-import { prisma } from '../db/prisma.js';
-
-import { handlePrismaRequestError } from '../utils/errorHandler.js';
 import { checkRequiredFields, emailFormattingCheck } from '../utils/inputValidation.js';
 import { logger } from '../utils/logger.js';
 
 import { ServiceResponse } from '../types/types.js';
+
+import { PrismaProvider } from '../providers/prisma.provider.js';
 
 export const SubscribersService = {
   async registerEmailForBeta(
@@ -28,15 +27,12 @@ export const SubscribersService = {
       };
     }
 
-    try {
-      const newEmail = await prisma.betaSubscribers.create({
-        data: { email },
-      });
+    const subscribeResult = await PrismaProvider.createSubscriber(email);
 
+    if (subscribeResult.success) {
       logger.success(`[Subscribers Service] Email registered successfully:`, email);
-      return { success: true, data: newEmail };
-    } catch (error) {
-      return handlePrismaRequestError(error, 'registering email', 'SubscribersService');
     }
+
+    return subscribeResult;
   },
 };
