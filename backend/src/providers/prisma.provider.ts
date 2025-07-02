@@ -25,6 +25,18 @@ export const PrismaProvider = {
     }
   },
 
+  async createSubscriber(email: string): Promise<ServiceResponse<{ id: string; email: string }>> {
+    try {
+      const subscriber = await prisma.betaSubscribers.create({
+        data: { email },
+      });
+
+      return { success: true, data: { id: subscriber.id, email: subscriber.email } };
+    } catch (error) {
+      return handlePrismaRequestError(error, 'creating user', 'PrismaProvider');
+    }
+  },
+
   async getUsers(
     limit: number = 20,
     cursor?: string,
