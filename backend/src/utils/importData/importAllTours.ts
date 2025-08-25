@@ -1,13 +1,13 @@
-import { importTours } from './importTours.js';
-import { importTourImages } from './importTourImages.js';
-import { importTourPrices } from './importTourPrices.js';
+import { importTours } from './helpers/importTours.js';
+import { importTourImages } from './helpers/importTourImages.js';
+import { importTourPrices } from './helpers/importTourPrices.js';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { config } from 'dotenv';
 import {
   logSummary,
   parseCSV, TourCSV, TourImageCSV, TourPriceCSV
-} from './sharedUtils/importDataUtils.js';
+} from './utils/importDataUtils.js';
 
 // Get the directory of the current script
 const __filename = fileURLToPath(import.meta.url);

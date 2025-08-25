@@ -50,7 +50,7 @@ model Park {
   name         String    @unique
   type         String
   country      String
-  countryCode  String
+  countryCode  String?
   keyword      String
   dateCreated  DateTime  @default(now())
   dateModified DateTime? @updatedAt

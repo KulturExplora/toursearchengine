@@ -8,7 +8,7 @@ import {
   tourIdMapping,
   FailedRecord,
   ImportResult,
-} from './sharedUtils/importDataUtils.js';
+} from '../utils/importDataUtils.js';
 
 async function importTourPrices(tourPrices: TourPriceCSV[], failedTours: FailedRecord[] = []): Promise<ImportResult> {
   let tourPricesImported = 0;

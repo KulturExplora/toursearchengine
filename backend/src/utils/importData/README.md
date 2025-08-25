@@ -1,17 +1,21 @@
 # CSV Import Scripts
 
-This directory contains scripts to import tour data from CSV files into the database using Prisma.
+This directory contains scripts used to import tour data from the CSV files(Tours.csv, TourImages.csv, TourPrices.csv, Parks.csv & TourParks.csv) into the database using Prisma.
+
 
 ## File Structure
 
 ```
 importData
-├── README.md                     # Instructions for running import scripts (This file)
-├── importAllData.ts              # Runs all import scripts in sequence
-├── importTours.ts                # Imports Tours.csv (run first)
-├── importTourImages.ts          # Imports TourImages.csv (run second)
-├── importTourPrices.ts          # Imports TourPrices.csv (run third)
-└── sharedUtils
+├── README.md                       # Instructions for running import scripts (This file)
+├── importAllTours.ts               # Runs all import scripts in sequence
+├── importParkData.ts               # Imports Parks.csv
+├── importTourParkData.ts           # Imports TourParks.csv
+├── helpers
+|   └── importTours.ts              # Imports Tours.csv
+|   └── importTourImages.ts         # Imports TourImages.csv
+|   └── importTourPrices.ts         # Imports TourPrices.csv
+└── utils
     └── importDataUtils.ts       # Shared utility functions (date parser, cleaner, etc.)
 ```
 
@@ -30,6 +34,8 @@ importData
 
 **IMPORTANT**: Place your `.csv` files in the `importData/` directory (same level as the import scripts). This must be done manually — these files are excluded from version control (`.gitignore`).
 
+# Import Tour Data
+
 The scripts expect the following files to exist:
 
 - `./Tours.csv`
@@ -42,7 +48,7 @@ The scripts expect the following files to exist:
 
 ```bash
 # Import all CSV files in the correct order
-npx tsx importAllData.ts
+npx tsx importAllTours.ts
 ```
 
 This will automatically:
@@ -280,3 +286,51 @@ To re-import data:
 - **Timestamps** are preserved from CSV data when available
 - **Auto-generated values** are used for missing required fields
 - All scripts include **cleanup handlers** to close database connections properly
+
+# Import Park Data
+  
+
+## Usage
+
+### Import Parks
+
+```bash
+# Import Parks into the Database
+npx tsx importParkData.ts
+```
+
+#### Expected Output
+
+```
+...
+Imported park: Northern Tuli Game Reserve
+Imported park: Nxai Pan National Park
+Imported park: Okavango Delta
+Imported park: Tuli Block (Mashatu Game Reserve)
+
+Parks import complete: 120 imported, 0 failed
+```
+
+### Import TourParks
+
+
+**Note:** The tour data from **Tours.csv, TourPrices.csv, TourImages.csv & Parks.csv** needs to be imported in the database before importing the data from the **TourParks.csv** file.
+
+```bash
+# Import TourParks mapped data into the Database
+npx tsx importTourParkData.ts
+```
+
+#### Expected Output
+
+```
+...
+Imported association: TourId 1 with ParkId 2
+Imported association: TourId 2 with ParkId 3
+Imported association: TourId 3 with ParkId 1
+Imported association: TourId 4 with ParkId 5
+Imported association: TourId 5 with ParkId 2
+
+244 tour-park associations imported successfully.
+
+```

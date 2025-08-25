@@ -8,7 +8,7 @@ import {
   parseBoolean,
   tourIdMapping,
   ImportResult,
-} from './sharedUtils/importDataUtils.js';
+} from '../utils/importDataUtils.js';
 
 // Function from importing multiple tours from CSV files
 async function importTours(tours: TourCSV[]): Promise<ImportResult> {
